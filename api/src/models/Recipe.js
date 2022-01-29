@@ -27,8 +27,9 @@ module.exports = (sequelize) => {
       type:DataTypes.INTEGER,
     },
     //PASO A PASO:
-    analyzedInstructions:{
-      type:DataTypes.ARRAY(DataTypes.TEXT),
-    }
+    instructions:{
+      // type:DataTypes.ARRAY(DataTypes.TEXT)
+      type:DataTypes.TEXT,
+    },
   });
 };
