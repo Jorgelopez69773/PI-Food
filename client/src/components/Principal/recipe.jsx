@@ -2,19 +2,18 @@ import React,{useEffect} from "react";
 import { useDispatch,useSelector } from "react-redux"; 
 import { getRecipeId} from "../../redux/actions";
 import Card2 from "../Functional/card2";
-import Buttonlink from "../Functional/buttonLink.jsx"
+import Buttonlink from "../Functional/buttonLink.jsx";
+import "../styles/recipe.css";
 const Recipe=()=>{
     let id=window.location.pathname;
     id= id.slice(8);
     
-    let {title,summary,image,spoonacularScore,healthScore,instructions,diets}=useSelector(state=>state.recipe);
+    let recipe=useSelector(state=>state.recipe);
     const dispatch=useDispatch();
-    
-    
     useEffect(()=>{dispatch(getRecipeId(id))},[dispatch,id]);
     return (
-        <div>
-        <Card2 title={title} summary={summary} image={image} spoonacularScore={spoonacularScore} healthScore={healthScore} instructions={instructions} Diets={diets}/>
+        <div className="recipe-flex">
+        <Card2 title={recipe.title} summary={recipe.summary} image={recipe.image} spoonacularScore={recipe.spoonacularScore} healthScore={recipe.healthScore} instructions={recipe.instructions} Diets={recipe.diets}/>
         <Buttonlink to="/home" name="Back"/>
         </div>
         )

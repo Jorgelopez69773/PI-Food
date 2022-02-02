@@ -1,6 +1,7 @@
 
 import { 
     GET_RECIPES,
+    GET_RECIPESSAMPLING,
     SET_ORDER,
     SET_NAME,
     SET_PAGE,
@@ -12,12 +13,12 @@ import {
 
 const initialState={
     recipes:[],
+    sampling:[],
     recipe:{},
     types:[],
     name:"",
     order:"",
     page:0,
-    id:""
 };
 
 
@@ -58,6 +59,11 @@ export default function reducer(state=initialState,action){
                 ...state,
                 recipe:action.payload
             }
+            case GET_RECIPESSAMPLING:
+                return {
+                    ...state,
+                    sampling:action.payload
+                }
         default:return state;
     }
 };

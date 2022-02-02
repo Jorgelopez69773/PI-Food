@@ -1,13 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Fragment } from "react";
-
-
+import "../styles/buttonLink.css";
 const  Butttonlink=(props)=>{
     return(
-        <Fragment>
-            <NavLink className="button" to={props.to}><button>{props.name}</button></NavLink>
-        </Fragment>
+        <div className="buttonLink">
+            <NavLink className="button-NavLink" to={props.to}><button className="button-general">{props.name}</button></NavLink>
+        </div>
     )
 }
 export default Butttonlink;

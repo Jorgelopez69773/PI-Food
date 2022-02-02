@@ -3,22 +3,26 @@ import { Fragment } from "react";
 import {useDispatch}from "react-redux";
 import {setOrder} from "../../redux/actions/index.js"
 import Buttonset from "../Functional/buttonSet";
-
+import "../styles/order.css";
 const Order=()=>{
     const dispatch=useDispatch()
     return (
-        <Fragment>
+        <div className="order-flex">
             <div className="order-name">
-                <p>Ordenamiento por Nombre:</p>
-                <Buttonset function={()=>dispatch(setOrder('ASC'))} name="ASC"/>
-                <Buttonset function={()=>dispatch(setOrder('DESC'))} name="DESC"/>
+                <div className="order-buttons">
+                <Buttonset function={()=>dispatch(setOrder('ASC'))} name="A-Z"/>
+                <p>Name</p>
+                <Buttonset function={()=>dispatch(setOrder('DESC'))} name="Z-A"/>
+                </div>
             </div>
             <div className="order-point">
-                <p>Ordenamiento por Puntaje:</p>
-                <Buttonset function={()=>dispatch(setOrder('ASC1'))} name="ASC"/>
-                <Buttonset function={()=>dispatch(setOrder('DESC1'))} name="DESC"/> 
+                <div className="order-buttons">
+                <Buttonset function={()=>dispatch(setOrder('ASC1'))} name="1-100"/>
+                <p>Point</p>
+                <Buttonset function={()=>dispatch(setOrder('DESC1'))} name="100-1"/> 
+                </div>
             </div>
-        </Fragment>
+        </div>
     )
 };
 

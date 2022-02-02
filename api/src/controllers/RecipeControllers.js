@@ -14,7 +14,7 @@ async function postRecipe(req,res,next){
     };
    await Recipe.create(newRecipe)
     .then(recipe=>{
-        if(idDiets.length>0){
+        if(idDiets){
             idDiets.map(diet=>recipe.addDiet(diet))
         }
         res.json({...recipe,idDiets})

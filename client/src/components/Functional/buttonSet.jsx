@@ -1,7 +1,10 @@
 import React from "react";
+import "../styles/buttonSet.css";
 const Buttonset=(props)=>{
     return (
-        <button disabled={props.disabled} onClick={props.function}>{props.name}</button>
+        <div className="buttoon">
+        <button className="button-secundary" disabled={props.disabled} onClick={props.function}>{props.name}</button>
+        </div>
     )
 };
 

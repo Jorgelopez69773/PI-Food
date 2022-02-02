@@ -2,39 +2,41 @@ import React from "react";
 import Card from "../Functional/card";
 import {useSelector,useDispatch} from "react-redux";
 import { useEffect ,Fragment} from "react";
-import { getRecipes } from "../../redux/actions";
+import { getRecipesSampling } from "../../redux/actions";
 import Paginated from "./paginated";
-
-
-
+import "../styles/sampling.css";
 const Sampling=()=>{
 
-
     const dispatch=useDispatch();
-    const {name,order,page,recipes}=useSelector(state=>({
-        name:state.name,
+    const {order,page,recipes,sampling}=useSelector(state=>({
         order:state.order,
         page:state.page,
-        recipes:state.recipes
+        recipes:state.recipes,
+        sampling:state.sampling
     }));
 
 
     useEffect(()=>{
-        dispatch(getRecipes({name,order,page}));
-    },[dispatch,name,order,page]);
-
-
-
-
-
+        dispatch(getRecipesSampling(recipes,order,page));
+    },[dispatch,order,page,recipes]);
+    let number=1;
+    let item="item";
+    let result="";
     return (
-        <Fragment>
+        <div className="sampling-flex">
+            
             <Paginated/>
+            <div className="grid-card">
             {
-                recipes.map(recipe=>
-                    <Card key={recipe.id} image={recipe.image} name={recipe.name} diet={recipe.diets} id={recipe.id}/>)
+                sampling.map(recipe=>
+                    {
+                        result=item+number;
+                        number++;
+                    return (<Card className={result} key={recipe.id} image={recipe.image} name={recipe.name} diet={recipe.diets} id={recipe.id}/>)
+                    })
             }
-        </Fragment>
+            </div>
+        </div>
     )
 };
 

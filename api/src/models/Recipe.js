@@ -31,5 +31,9 @@ module.exports = (sequelize) => {
       // type:DataTypes.ARRAY(DataTypes.TEXT)
       type:DataTypes.TEXT,
     },
+    image:{
+      type:DataTypes.TEXT,
+      defaultValue:"https://spoonacular.com/recipeImages/667704-312x231.jpg"
+    }
   });
 };

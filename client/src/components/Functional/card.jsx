@@ -1,13 +1,20 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "../styles/card.css"
 const Card=(props)=>{
     let diets=props.diet;
     let href=`/recipe/${props.id}`;
+    let ClassName=props.className
+    ClassName=ClassName+' card-container';
+    console.log(ClassName);
     return (
-        <div>
-            <img src={props.image} alt={props.name}/>
-            <NavLink to={href} ><h1>{props.name}</h1></NavLink>
-            <ul>
+        <div ClassName={ClassName} >
+            <div className="card-container border">
+            <img className="card-img" src={props.image} alt={props.name}/>
+            <div className="atras">
+            <div className="card-container-secundary">
+            <NavLink to={href} ><h1 className="card-title">{props.name}</h1></NavLink>
+            <ul className="card-list">
             {
                 diets.map(diet=>{
                     if(typeof diet==="string"){
@@ -23,6 +30,9 @@ const Card=(props)=>{
                 ) 
             }
             </ul>
+            </div>
+            </div>
+            </div>
         </div>
     )
 };
