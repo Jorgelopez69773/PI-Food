@@ -9,6 +9,7 @@ export const SET_NAME="SET_NAME";
 export const SET_PAGE="SET_PAGE";
 export const SET_ID="SET_ID";
 export const POST_RECIPE="POST_RECIPE";
+export const FILTER_DIET="FILTER_DIET";
 
 
 
@@ -25,17 +26,14 @@ export const getRecipes=({name})=>async (dispatch)=>{
             type:GET_RECIPES,
             payload:result.data
         });
+
     }catch(error){
         console.log(error)
     }
 };
 
 export const getRecipesSampling=(array,order,page)=>async (dispatch)=>{
-    let number=10
-
-
-
-    
+    let number=10   
     //Ordenamiento
     if(order && order!==""){
         if(order==='ASC'||order==='DESC'){
@@ -60,11 +58,11 @@ export const getRecipesSampling=(array,order,page)=>async (dispatch)=>{
     };    
     };
     if(!page || page==="" ||page>10){
-        page=0
+        page=1
     };
 
     // Paginado
-    array=array.slice(page*number,page*number+10);
+    array=array.slice(page*number-10,page*number);
 
 
     return dispatch({
@@ -104,13 +102,14 @@ export const setName=(string)=>async (dispatch)=>{
     }
 };
 
-export const SetPage=(value)=> async(dispatch)=>{
+export const SetPage=(value,array)=> async(dispatch)=>{
     try{
-        if(value<0){
-            value=0
+        let pagetotal=Math.ceil(array.length/10);
+        if(value<1){
+            value=pagetotal;
         };
-        if(value>9){
-            value=0
+        if(value>pagetotal){
+            value=1
         }
         return dispatch({
             type:SET_PAGE,
@@ -149,6 +148,29 @@ export const getRecipeId=(id)=>async (dispatch)=>{
             type:GET_RECIPE_ID,
             payload:result.data
         })
+    }catch(error){
+        console.log(error)
+    }
+}
+
+export const getRecipesDiet=(string,array)=> async (dispatch)=>{
+    try{
+            // let recipes= await axios.get(`http://localhost:3001/recipes/recipe-diet/${string}`)
+            //  return dispatch({
+            //      type:FILTER_DIET,
+            //      payload:recipes.data
+            //  }
+            //  )
+
+
+
+        if(typeof array.length>0){
+            let RecipeDietFilter=array.filter(recipe=>recipe.diets.includes(string))
+            return dispatch ({
+                type:FILTER_DIET,
+                payload:RecipeDietFilter
+            })
+        } 
     }catch(error){
         console.log(error)
     }

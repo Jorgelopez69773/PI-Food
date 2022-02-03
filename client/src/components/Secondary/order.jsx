@@ -1,8 +1,8 @@
 import React from "react";
-import { Fragment } from "react";
 import {useDispatch}from "react-redux";
 import {setOrder} from "../../redux/actions/index.js"
 import Buttonset from "../Functional/buttonSet";
+import Filterdiet from "../Functional/filterDiet.jsx";
 import "../styles/order.css";
 const Order=()=>{
     const dispatch=useDispatch()
@@ -15,6 +15,9 @@ const Order=()=>{
                 <Buttonset function={()=>dispatch(setOrder('DESC'))} name="Z-A"/>
                 </div>
             </div>
+            {/* <div>
+                <Filterdiet/>
+            </div> */}
             <div className="order-point">
                 <div className="order-buttons">
                 <Buttonset function={()=>dispatch(setOrder('ASC1'))} name="1-100"/>

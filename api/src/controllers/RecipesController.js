@@ -23,7 +23,7 @@ async function getRecipes(req,res,next){
                 attributes:['name']
                 }
             ]
-        })
+        });
     } else {
         resultDb=await Recipe.findAll({
             attributtes:['name','spoonacularScore','id'],
@@ -32,13 +32,13 @@ async function getRecipes(req,res,next){
                 attributes:['name']
                 }
             ],
-        })
-        
+        });
     };
+    
     if(resultDb.length!==0 && resultDb.length<100){
         number=number-resultDb.length;
         URL=URL+`&number=${number}`;
-    
+         
     }
     if(resultDb.length===0 || !resultDb){
         URL=URL+`&number=${number}`;
@@ -53,6 +53,48 @@ async function getRecipes(req,res,next){
     }})
     let result=resultDb.concat(resultApi);
     res.json(result);
+    
+}
+
+async function getRecipesDiet(req,res,next){
+    try{
+        let URL=`https://api.spoonacular.com/recipes/complexSearch?apiKey=${DB_KEY}&addRecipeInformation=true`;
+        let {diet}=req.query;
+        URL=URL+`&diet=${diet}`;
+        let number=100
+
+         let resultDb=await Recipe.findAll({
+            attributes:['name','spoonacularScore','id'],
+            include:[{
+                model:Diet,
+                attributes:['name'],
+                where:{
+                    name:{
+                        [Op.iLike]:`${diet}`
+                    }
+                },
+                }
+            ]
+        });
+        if(resultDb.length>0 && resultDb){
+            number=number-resultDb.length;
+        }
+        URL=URL+`&number=${number}`;
+        let resultApi=( await axios.get(URL)).data.results;
+        resultApi=resultApi.map(recipe=>{
+            return({
+        id:recipe.id,
+        name:recipe.title,
+        image:recipe.image,
+        diets:recipe.diets,
+        spoonacularScore:recipe.spoonacularScore
+            })
+        })
+        let result=resultDb.concat(resultApi);
+        res.json(result);
+    }catch(error){
+        next(error)
+    }
 }
 
 
@@ -199,4 +241,4 @@ async function getRecipeId(req,res,next){
 
 
 
-module.exports={getRecipes,getRecipeId};
+module.exports={getRecipes,getRecipeId,getRecipesDiet};

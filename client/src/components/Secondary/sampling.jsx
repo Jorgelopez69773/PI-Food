@@ -24,7 +24,6 @@ const Sampling=()=>{
     let result="";
     return (
         <div className="sampling-flex">
-            
             <Paginated/>
             <div className="grid-card">
             {

@@ -1,13 +1,16 @@
 import React from "react";
 import Formcreate from "../Functional/form";
-import { Fragment } from "react";
 import Butttonlink from "../Functional/buttonLink";
+import "../styles/createRecipe.css";
 const Createrecipe=()=>{
     return (
-        <Fragment>
-            <Butttonlink to="/home" name="Back"/>
+        <div className="create-recipe">
             <Formcreate/>
-        </Fragment>
+            <div className="create-areabutton">
+            <Butttonlink to="/home" name="Back"/>
+            </div>
+            
+        </div>
     )
 };
 

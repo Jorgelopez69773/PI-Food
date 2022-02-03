@@ -2,7 +2,7 @@ const {Recipe,Diet} = require('../db');
 
 async function loadDiets(req,res,next){
 try{
-    let typeOfDiet=['omnivore','pescetarian','vegetarian','lacto ovo vegetarian','vegan','fruitarian','paleo'];
+    let typeOfDiet=['pescatarian','vegetarian','lacto ovo vegetarian','vegan','paleo','gluten free','primal'];
     typeOfDiet=typeOfDiet.map(diet=>{
         return {
             name:diet

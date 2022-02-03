@@ -7,7 +7,8 @@ import {
     SET_PAGE,
     GET_DIETS,
     SET_ID,
-    GET_RECIPE_ID
+    GET_RECIPE_ID,
+    FILTER_DIET
 } from "../actions/index.js";
 
 
@@ -18,7 +19,7 @@ const initialState={
     types:[],
     name:"",
     order:"",
-    page:0,
+    page:1,
 };
 
 
@@ -63,6 +64,11 @@ export default function reducer(state=initialState,action){
                 return {
                     ...state,
                     sampling:action.payload
+                }
+            case FILTER_DIET:
+                return {
+                    ...state,
+                    recipes:action.payload
                 }
         default:return state;
     }

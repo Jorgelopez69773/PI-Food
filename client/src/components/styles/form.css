@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Athiti&family=Pacifico&display=swap');
+
+
+
+.formulario-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    margin: 0.5%;
+    height: 90%;
+    width: 90%;
+    border-width: 0.4em;
+    border-style: double;
+    border-color: orange;
+    border-radius: 20%;
+}
+
+
+.create-areabutton{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* .buttonLink{
+    height: 10%;
+} */
+
+
+label{
+    color: papayawhip;
+    font-family: 'Pacifico',cursive;
+}
+.formulario-flex{
+    color: papayawhip;
+    font-family: 'Pacifico',cursive;
+}
+
+.formulario-name{
+    margin: 0.5%;
+    width: 50%;
+    background-color: tan;
+    border-radius: 10%;
+}
+
+.formulario-summary{
+    margin: 0.5%;
+    width: 80%;
+    background-color: tan;
+    border-radius: 10%;
+}
+
+.formulario-score{
+    margin:0.5%;
+    width: 10%;
+    background-color:tan;
+    border-radius: 10%;
+}
+
+.formulario-instructions{
+    margin:0.5%;
+    width: 80%;
+    background-color: tan;
+    border-radius: 10%;
+}
+
+.formulario-grid{
+    display: grid;
+    grid-template-columns: repeat(3,30%);
+    grid-template-rows: repeat(2,50%);
+    justify-content: center;
+}
+
+.formulario-conteiner{
+    margin:1%;
+    width: 80%;
+}
+
+
+.formulario-button{
+    height: 10%;
+    width: 30%;
+    font-family: 'Pacifico',cursive;
+    font-size: 150%;
+    background-color: orange;
+    border-radius: 20%;
+}

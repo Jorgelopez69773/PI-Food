@@ -6,7 +6,6 @@ const Card=(props)=>{
     let href=`/recipe/${props.id}`;
     let ClassName=props.className
     ClassName=ClassName+' card-container';
-    console.log(ClassName);
     return (
         <div ClassName={ClassName} >
             <div className="card-container border">
